@@ -1,0 +1,145 @@
+---
+import { useTranslations, type Lang } from '../i18n/translations';
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const projects = [
+  {
+    title: 'NovaCommerce',
+    desc: lang === 'hu'
+      ? 'Modern e-kereskedelmi platform egyedi termékkonfigurátorral és valós idejű készletkövetéssel.'
+      : 'Modern e-commerce platform with a custom product configurator and real-time inventory tracking.',
+    tags: ['ecommerce', 'fullstack'],
+    tech: ['Next.js', 'Stripe', 'PostgreSQL'],
+    color: 'from-brand-600 to-violet-600',
+    icon: '🛍️',
+    year: '2024',
+  },
+  {
+    title: 'PulseAnalytics',
+    desc: lang === 'hu'
+      ? 'SaaS dashboard komplex adatvizualizációkkal, valós idejű frissítésekkel és többfelhasználós hozzáféréssel.'
+      : 'SaaS dashboard with complex data visualisations, real-time updates and multi-user access control.',
+    tags: ['webapp', 'fullstack'],
+    tech: ['React', 'Node.js', 'Redis'],
+    color: 'from-violet-600 to-pink-600',
+    icon: '📊',
+    year: '2024',
+  },
+  {
+    title: 'ArcStudio',
+    desc: lang === 'hu'
+      ? 'Építészeti iroda portfólióoldala letisztult animációkkal, 3D galéria nézettel és CMS integrációval.'
+      : 'Architecture studio portfolio with clean animations, a 3D gallery view and CMS integration.',
+    tags: ['frontend'],
+    tech: ['Astro', 'Three.js', 'Sanity'],
+    color: 'from-amber-500 to-orange-500',
+    icon: '🏛️',
+    year: '2024',
+  },
+  {
+    title: 'MedBook',
+    desc: lang === 'hu'
+      ? 'Orvosi időpontfoglaló rendszer automatikus emlékeztetőkkel, fizetési integrációval és betegportállal.'
+      : 'Medical appointment booking system with automated reminders, payment integration and a patient portal.',
+    tags: ['webapp', 'fullstack'],
+    tech: ['Next.js', 'Prisma', 'Twilio'],
+    color: 'from-green-500 to-teal-500',
+    icon: '🏥',
+    year: '2023',
+  },
+  {
+    title: 'Forte Music',
+    desc: lang === 'hu'
+      ? 'Zeneiskola weboldala online kurzusokkal, videólejátszóval és egyéni órarend-kezelővel.'
+      : 'Music school website with online courses, a video player and a personalised schedule manager.',
+    tags: ['fullstack'],
+    tech: ['Astro', 'Supabase', 'Vimeo API'],
+    color: 'from-pink-500 to-rose-500',
+    icon: '🎵',
+    year: '2023',
+  },
+  {
+    title: 'GreenRoute',
+    desc: lang === 'hu'
+      ? 'Fenntartható turisztikai weboldal interaktív térképpel, blog motorral és hírlevél integrációval.'
+      : 'Sustainable tourism website with an interactive map, a blog engine and newsletter integration.',
+    tags: ['frontend', 'fullstack'],
+    tech: ['Astro', 'Mapbox', 'Mailchimp'],
+    color: 'from-teal-500 to-brand-500',
+    icon: '🌿',
+    year: '2023',
+  },
+];
+
+const tagColors: Record<string, string> = {
+  frontend: 'bg-brand-900/60 text-brand-300 border-brand-700/50',
+  fullstack: 'bg-violet-900/60 text-violet-300 border-violet-700/50',
+  ecommerce: 'bg-amber-900/60 text-amber-300 border-amber-700/50',
+  webapp: 'bg-green-900/60 text-green-300 border-green-700/50',
+};
+---
+
+<section id="portfolio" class="section-padding bg-dark-900 relative overflow-hidden">
+  <div class="orb w-[400px] h-[400px] bg-violet-700 bottom-[-100px] right-[-100px]"></div>
+
+  <div class="max-w-7xl mx-auto relative">
+
+    <!-- Header -->
+    <div class="text-center mb-16">
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm font-medium text-brand-300 mb-4 reveal">
+        {t('portfolio.badge')}
+      </div>
+      <h2 class="text-4xl sm:text-5xl font-extrabold text-white mb-4 reveal reveal-delay-1">
+        {t('portfolio.title')}&nbsp;<span class="gradient-text">{t('portfolio.title.accent')}</span>
+      </h2>
+      <p class="text-slate-400 text-lg max-w-xl mx-auto reveal reveal-delay-2">
+        {t('portfolio.description')}
+      </p>
+    </div>
+
+    <!-- Projects grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {projects.map(({ title, desc, tags, tech, color, icon, year }, i) => (
+        <article class={`reveal reveal-delay-${(i % 3) + 1} group glass rounded-2xl overflow-hidden hover:-translate-y-1 hover:bg-white/[0.07] transition-all duration-300`}>
+
+          <!-- Card header -->
+          <div class={`relative h-40 bg-gradient-to-br ${color} flex items-center justify-center overflow-hidden`}>
+            <div class="absolute inset-0 bg-black/20"></div>
+            <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
+            <span class="text-5xl relative z-10 group-hover:scale-110 transition-transform duration-300">{icon}</span>
+            <div class="absolute top-4 right-4 text-white/50 text-xs font-mono">{year}</div>
+          </div>
+
+          <!-- Card body -->
+          <div class="p-6">
+            <div class="flex items-start justify-between mb-2">
+              <h3 class="text-white font-bold text-lg">{title}</h3>
+            </div>
+
+            <!-- Tags -->
+            <div class="flex flex-wrap gap-1.5 mb-3">
+              {tags.map(tag => (
+                <span class={`px-2.5 py-0.5 rounded-full text-xs font-medium border ${tagColors[tag]}`}>
+                  {t(`portfolio.tag.${tag}` as any)}
+                </span>
+              ))}
+            </div>
+
+            <p class="text-slate-400 text-sm leading-relaxed mb-4">{desc}</p>
+
+            <!-- Tech stack -->
+            <div class="flex flex-wrap gap-2">
+              {tech.map(t => (
+                <span class="text-xs text-slate-500 bg-white/5 rounded-md px-2 py-1 font-mono">{t}</span>
+              ))}
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+
+  </div>
+</section>

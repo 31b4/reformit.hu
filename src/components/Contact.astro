@@ -1,0 +1,163 @@
+---
+import { useTranslations, type Lang } from '../i18n/translations';
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<section id="contact" class="section-padding bg-dark-900 relative overflow-hidden">
+  <div class="orb w-[600px] h-[600px] bg-brand-700 bottom-[-200px] left-[-200px]"></div>
+  <div class="orb w-[300px] h-[300px] bg-violet-700 top-[-50px] right-[10%]"></div>
+
+  <div class="max-w-7xl mx-auto relative">
+
+    <!-- Header -->
+    <div class="text-center mb-16">
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm font-medium text-brand-300 mb-4 reveal">
+        {t('contact.badge')}
+      </div>
+      <h2 class="text-4xl sm:text-5xl font-extrabold text-white mb-4 reveal reveal-delay-1">
+        {t('contact.title')}<br />
+        <span class="gradient-text">{t('contact.title.accent')}</span>
+      </h2>
+      <p class="text-slate-400 text-lg max-w-xl mx-auto reveal reveal-delay-2">
+        {t('contact.description')}
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-5 gap-10 items-start">
+
+      <!-- Info cards -->
+      <div class="lg:col-span-2 space-y-4 reveal reveal-delay-1">
+
+        <a href="mailto:hello@reformit.hu" class="flex items-center gap-4 glass rounded-2xl p-5 hover:bg-white/[0.07] transition-all duration-200 group">
+          <div class="w-12 h-12 rounded-xl gradient-bg flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          </div>
+          <div>
+            <div class="text-xs text-slate-500 uppercase tracking-wider mb-0.5">Email</div>
+            <div class="text-white font-medium">{t('contact.info.email')}</div>
+          </div>
+        </a>
+
+        <a href="tel:+36301234567" class="flex items-center gap-4 glass rounded-2xl p-5 hover:bg-white/[0.07] transition-all duration-200 group">
+          <div class="w-12 h-12 rounded-xl gradient-bg flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.36 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.27 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z"/></svg>
+          </div>
+          <div>
+            <div class="text-xs text-slate-500 uppercase tracking-wider mb-0.5">Telefon</div>
+            <div class="text-white font-medium">{t('contact.info.phone')}</div>
+          </div>
+        </a>
+
+        <div class="flex items-center gap-4 glass rounded-2xl p-5">
+          <div class="w-12 h-12 rounded-xl gradient-bg flex items-center justify-center flex-shrink-0">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <div class="text-xs text-slate-500 uppercase tracking-wider mb-0.5">Helyszín</div>
+            <div class="text-white font-medium">{t('contact.info.location')}</div>
+          </div>
+        </div>
+
+        <!-- Response time badge -->
+        <div class="glass rounded-2xl p-5 flex items-center gap-3">
+          <div class="w-3 h-3 rounded-full bg-green-400 animate-pulse flex-shrink-0"></div>
+          <p class="text-slate-300 text-sm">
+            {lang === 'hu' ? 'Általában 24 órán belül válaszolunk.' : 'We usually respond within 24 hours.'}
+          </p>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <form
+        id="contact-form"
+        class="lg:col-span-3 glass rounded-3xl p-8 reveal reveal-delay-2"
+        novalidate
+      >
+        <div class="grid sm:grid-cols-2 gap-5 mb-5">
+          <div>
+            <label class="block text-sm font-medium text-slate-300 mb-2">{t('contact.name')}</label>
+            <input
+              type="text"
+              name="name"
+              placeholder={t('contact.name.placeholder')}
+              required
+              class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-brand-500/60 focus:bg-white/8 transition-all duration-200"
+            />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-slate-300 mb-2">{t('contact.email')}</label>
+            <input
+              type="email"
+              name="email"
+              placeholder={t('contact.email.placeholder')}
+              required
+              class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-brand-500/60 focus:bg-white/8 transition-all duration-200"
+            />
+          </div>
+        </div>
+
+        <div class="mb-5">
+          <label class="block text-sm font-medium text-slate-300 mb-2">{t('contact.budget')}</label>
+          <select
+            name="budget"
+            class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-slate-300 text-sm focus:outline-none focus:border-brand-500/60 transition-all duration-200 appearance-none"
+            style="background-image: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E\"); background-repeat: no-repeat; background-position: right 1rem center;"
+          >
+            <option value="" class="bg-dark-700">{t('contact.budget.opt1')}</option>
+            <option value="small" class="bg-dark-700">{t('contact.budget.opt2')}</option>
+            <option value="medium" class="bg-dark-700">{t('contact.budget.opt3')}</option>
+            <option value="large" class="bg-dark-700">{t('contact.budget.opt4')}</option>
+            <option value="unknown" class="bg-dark-700">{t('contact.budget.opt5')}</option>
+          </select>
+        </div>
+
+        <div class="mb-6">
+          <label class="block text-sm font-medium text-slate-300 mb-2">{t('contact.project')}</label>
+          <textarea
+            name="message"
+            rows="5"
+            placeholder={t('contact.project.placeholder')}
+            required
+            class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-brand-500/60 focus:bg-white/8 transition-all duration-200 resize-none"
+          ></textarea>
+        </div>
+
+        <button
+          type="submit"
+          class="w-full py-3.5 rounded-xl text-base font-semibold gradient-bg text-white hover:opacity-90 transition-opacity duration-200 glow flex items-center justify-center gap-2 group"
+        >
+          {t('contact.submit')}
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="group-hover:translate-x-1 transition-transform duration-200">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </button>
+
+        <!-- Success message (hidden) -->
+        <div id="form-success" class="hidden mt-4 p-4 rounded-xl bg-green-500/10 border border-green-500/30 text-green-400 text-sm text-center">
+          {lang === 'hu' ? '✓ Üzeneted megkaptuk! Hamarosan felvesszük veled a kapcsolatot.' : '✓ Message received! We\'ll be in touch soon.'}
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const success = document.getElementById('form-success');
+
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    // In production, send to backend/Formspree/etc.
+    form.style.opacity = '0.5';
+    form.style.pointerEvents = 'none';
+    setTimeout(() => {
+      form.style.opacity = '1';
+      form.style.pointerEvents = 'auto';
+      success?.classList.remove('hidden');
+      form.reset();
+    }, 800);
+  });
+</script>

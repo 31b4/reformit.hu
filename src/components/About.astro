@@ -1,0 +1,96 @@
+---
+import { useTranslations, type Lang } from '../i18n/translations';
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const values = [
+  { titleKey: 'about.value1.title' as const, descKey: 'about.value1.desc' as const, icon: '⭐', color: 'text-amber-400' },
+  { titleKey: 'about.value2.title' as const, descKey: 'about.value2.desc' as const, icon: '💬', color: 'text-brand-400' },
+  { titleKey: 'about.value3.title' as const, descKey: 'about.value3.desc' as const, icon: '⚡', color: 'text-green-400' },
+];
+
+const techs = [
+  { name: 'Astro', logo: 'A' },
+  { name: 'React', logo: 'R' },
+  { name: 'Next.js', logo: 'N' },
+  { name: 'TypeScript', logo: 'TS' },
+  { name: 'Node.js', logo: 'N' },
+  { name: 'Tailwind', logo: 'T' },
+  { name: 'PostgreSQL', logo: 'PG' },
+  { name: 'Supabase', logo: 'S' },
+  { name: 'Figma', logo: 'F' },
+];
+
+const colors = [
+  'from-orange-500 to-rose-500',
+  'from-brand-500 to-cyan-500',
+  'from-slate-600 to-slate-700',
+  'from-blue-500 to-violet-500',
+  'from-green-500 to-teal-500',
+  'from-cyan-500 to-brand-500',
+  'from-blue-600 to-blue-800',
+  'from-green-400 to-emerald-600',
+  'from-violet-500 to-purple-700',
+];
+---
+
+<section id="about" class="section-padding bg-dark-800 relative overflow-hidden">
+  <div class="orb w-[500px] h-[500px] bg-brand-700 top-[-50px] right-[-200px]"></div>
+
+  <div class="max-w-7xl mx-auto relative">
+    <div class="grid lg:grid-cols-2 gap-20 items-center">
+
+      <!-- Left: Text -->
+      <div>
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm font-medium text-brand-300 mb-6 reveal">
+          {t('about.badge')}
+        </div>
+
+        <h2 class="text-4xl sm:text-5xl font-extrabold text-white mb-6 leading-tight reveal reveal-delay-1">
+          {t('about.title')}<br />
+          <span class="gradient-text">{t('about.title.accent')}</span>
+        </h2>
+
+        <p class="text-slate-400 text-lg leading-relaxed mb-4 reveal reveal-delay-2">
+          {t('about.description')}
+        </p>
+        <p class="text-slate-400 leading-relaxed mb-10 reveal reveal-delay-2">
+          {t('about.p2')}
+        </p>
+
+        <!-- Values -->
+        <div class="space-y-5">
+          {values.map(({ titleKey, descKey, icon, color }, i) => (
+            <div class={`reveal reveal-delay-${i + 2} flex items-start gap-4`}>
+              <div class="w-10 h-10 rounded-xl glass flex items-center justify-center flex-shrink-0 text-lg">
+                {icon}
+              </div>
+              <div>
+                <h4 class="text-white font-semibold mb-0.5">{t(titleKey)}</h4>
+                <p class="text-slate-400 text-sm">{t(descKey)}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Right: Tech stack -->
+      <div class="reveal reveal-delay-2">
+        <p class="text-slate-400 text-sm font-semibold uppercase tracking-widest mb-6">{t('about.tech')}</p>
+        <div class="grid grid-cols-3 gap-4">
+          {techs.map(({ name, logo }, i) => (
+            <div class={`glass rounded-2xl p-5 flex flex-col items-center gap-2 hover:-translate-y-1 hover:bg-white/[0.07] transition-all duration-300 group`}>
+              <div class={`w-10 h-10 rounded-xl bg-gradient-to-br ${colors[i]} flex items-center justify-center text-white text-xs font-bold group-hover:scale-110 transition-transform duration-300`}>
+                {logo}
+              </div>
+              <span class="text-slate-300 text-sm font-medium text-center">{name}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

@@ -1,0 +1,85 @@
+---
+import { useTranslations, type Lang } from '../i18n/translations';
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const services = [
+  {
+    icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>`,
+    titleKey: 'services.frontend.title' as const,
+    descKey: 'services.frontend.desc' as const,
+    color: 'from-brand-500 to-violet-500',
+    delay: '',
+  },
+  {
+    icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>`,
+    titleKey: 'services.fullstack.title' as const,
+    descKey: 'services.fullstack.desc' as const,
+    color: 'from-violet-500 to-pink-500',
+    delay: 'reveal-delay-1',
+  },
+  {
+    icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>`,
+    titleKey: 'services.design.title' as const,
+    descKey: 'services.design.desc' as const,
+    color: 'from-pink-500 to-orange-400',
+    delay: 'reveal-delay-2',
+  },
+  {
+    icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m13 2-2 2.5h3L12 7"/><path d="M10 14v-3"/><path d="M14 14v-3"/><path d="M18 14v-3"/><path d="M6 14v-3"/><path d="M20 16.57A5 5 0 0 0 17 7H5a5 5 0 0 0-2 9.57"/><path d="M16 22H8"/><path d="M12 22v-4"/></svg>`,
+    titleKey: 'services.performance.title' as const,
+    descKey: 'services.performance.desc' as const,
+    color: 'from-amber-400 to-orange-500',
+    delay: 'reveal-delay-3',
+  },
+  {
+    icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>`,
+    titleKey: 'services.ecommerce.title' as const,
+    descKey: 'services.ecommerce.desc' as const,
+    color: 'from-green-400 to-teal-500',
+    delay: 'reveal-delay-1',
+  },
+  {
+    icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>`,
+    titleKey: 'services.maintenance.title' as const,
+    descKey: 'services.maintenance.desc' as const,
+    color: 'from-teal-400 to-brand-500',
+    delay: 'reveal-delay-2',
+  },
+];
+---
+
+<section id="services" class="section-padding bg-dark-800 relative overflow-hidden">
+  <div class="orb w-[500px] h-[500px] bg-brand-700 top-[-100px] left-[-200px]"></div>
+
+  <div class="max-w-7xl mx-auto relative">
+
+    <!-- Header -->
+    <div class="text-center mb-16">
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm font-medium text-brand-300 mb-4 reveal">
+        {t('services.badge')}
+      </div>
+      <h2 class="text-4xl sm:text-5xl font-extrabold text-white mb-4 reveal reveal-delay-1">
+        {t('services.title')}&nbsp;<span class="gradient-text">{t('services.title.accent')}</span>
+      </h2>
+      <p class="text-slate-400 text-lg max-w-xl mx-auto reveal reveal-delay-2">
+        {t('services.description')}
+      </p>
+    </div>
+
+    <!-- Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {services.map(({ icon, titleKey, descKey, color, delay }) => (
+        <div class={`reveal ${delay} group glass rounded-2xl p-7 hover:bg-white/[0.07] transition-all duration-300 hover:-translate-y-1 cursor-default`}>
+          <div class={`w-12 h-12 rounded-xl bg-gradient-to-br ${color} flex items-center justify-center text-white mb-5 group-hover:scale-110 transition-transform duration-300`}>
+            <Fragment set:html={icon} />
+          </div>
+          <h3 class="text-white font-bold text-lg mb-2">{t(titleKey)}</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">{t(descKey)}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
