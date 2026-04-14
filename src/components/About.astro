@@ -6,33 +6,24 @@ const { lang } = Astro.props;
 const t = useTranslations(lang);
 
 const values = [
-  { titleKey: 'about.value1.title' as const, descKey: 'about.value1.desc' as const, icon: '⭐', color: 'text-amber-400' },
-  { titleKey: 'about.value2.title' as const, descKey: 'about.value2.desc' as const, icon: '💬', color: 'text-brand-400' },
-  { titleKey: 'about.value3.title' as const, descKey: 'about.value3.desc' as const, icon: '⚡', color: 'text-green-400' },
-];
-
-const techs = [
-  { name: 'Astro', logo: 'A' },
-  { name: 'React', logo: 'R' },
-  { name: 'Next.js', logo: 'N' },
-  { name: 'TypeScript', logo: 'TS' },
-  { name: 'Node.js', logo: 'N' },
-  { name: 'Tailwind', logo: 'T' },
-  { name: 'PostgreSQL', logo: 'PG' },
-  { name: 'Supabase', logo: 'S' },
-  { name: 'Figma', logo: 'F' },
-];
-
-const colors = [
-  'from-orange-500 to-rose-500',
-  'from-brand-500 to-cyan-500',
-  'from-slate-600 to-slate-700',
-  'from-blue-500 to-violet-500',
-  'from-green-500 to-teal-500',
-  'from-cyan-500 to-brand-500',
-  'from-blue-600 to-blue-800',
-  'from-green-400 to-emerald-600',
-  'from-violet-500 to-purple-700',
+  {
+    titleKey: 'about.value1.title' as const,
+    descKey: 'about.value1.desc' as const,
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`,
+    color: 'text-amber-400',
+  },
+  {
+    titleKey: 'about.value2.title' as const,
+    descKey: 'about.value2.desc' as const,
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>`,
+    color: 'text-brand-400',
+  },
+  {
+    titleKey: 'about.value3.title' as const,
+    descKey: 'about.value3.desc' as const,
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
+    color: 'text-green-400',
+  },
 ];
 ---
 
@@ -64,8 +55,8 @@ const colors = [
         <div class="space-y-5">
           {values.map(({ titleKey, descKey, icon, color }, i) => (
             <div class={`reveal reveal-delay-${i + 2} flex items-start gap-4`}>
-              <div class="w-10 h-10 rounded-xl glass flex items-center justify-center flex-shrink-0 text-lg">
-                {icon}
+              <div class={`w-10 h-10 rounded-xl glass flex items-center justify-center flex-shrink-0 ${color}`}>
+                <Fragment set:html={icon} />
               </div>
               <div>
                 <h4 class="text-white font-semibold mb-0.5">{t(titleKey)}</h4>
@@ -76,18 +67,36 @@ const colors = [
         </div>
       </div>
 
-      <!-- Right: Tech stack -->
-      <div class="reveal reveal-delay-2">
-        <p class="text-slate-400 text-sm font-semibold uppercase tracking-widest mb-6">{t('about.tech')}</p>
-        <div class="grid grid-cols-3 gap-4">
-          {techs.map(({ name, logo }, i) => (
-            <div class={`glass rounded-2xl p-5 flex flex-col items-center gap-2 hover:-translate-y-1 hover:bg-white/[0.07] transition-all duration-300 group`}>
-              <div class={`w-10 h-10 rounded-xl bg-gradient-to-br ${colors[i]} flex items-center justify-center text-white text-xs font-bold group-hover:scale-110 transition-transform duration-300`}>
-                {logo}
-              </div>
-              <span class="text-slate-300 text-sm font-medium text-center">{name}</span>
+      <!-- Right: Why choose us cards -->
+      <div class="reveal reveal-delay-2 space-y-4">
+        <div class="glass rounded-2xl p-6 hover:-translate-y-1 hover:bg-white/[0.07] transition-all duration-300">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-10 h-10 rounded-xl gradient-bg flex items-center justify-center text-white flex-shrink-0">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
             </div>
-          ))}
+            <h4 class="text-white font-semibold">{t('about.highlight1.title')}</h4>
+          </div>
+          <p class="text-slate-400 text-sm leading-relaxed">{t('about.highlight1.desc')}</p>
+        </div>
+
+        <div class="glass rounded-2xl p-6 hover:-translate-y-1 hover:bg-white/[0.07] transition-all duration-300">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-10 h-10 rounded-xl gradient-bg flex items-center justify-center text-white flex-shrink-0">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            </div>
+            <h4 class="text-white font-semibold">{t('about.highlight2.title')}</h4>
+          </div>
+          <p class="text-slate-400 text-sm leading-relaxed">{t('about.highlight2.desc')}</p>
+        </div>
+
+        <div class="glass rounded-2xl p-6 hover:-translate-y-1 hover:bg-white/[0.07] transition-all duration-300">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-10 h-10 rounded-xl gradient-bg flex items-center justify-center text-white flex-shrink-0">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <h4 class="text-white font-semibold">{t('about.highlight3.title')}</h4>
+          </div>
+          <p class="text-slate-400 text-sm leading-relaxed">{t('about.highlight3.desc')}</p>
         </div>
       </div>
 

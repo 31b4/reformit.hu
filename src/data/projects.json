@@ -1,0 +1,82 @@
+{
+  "projects": [
+    {
+      "title": "NovaCommerce",
+      "desc": {
+        "hu": "Modern e-kereskedelmi platform egyedi termékkonfigurátorral és valós idejű készletkövetéssel.",
+        "en": "Modern e-commerce platform with a custom product configurator and real-time inventory tracking."
+      },
+      "tags": ["ecommerce", "fullstack"],
+      "color": "from-brand-600 to-violet-600",
+      "iconType": "shop",
+      "image": null,
+      "url": null,
+      "year": "2025"
+    },
+    {
+      "title": "PulseAnalytics",
+      "desc": {
+        "hu": "SaaS dashboard komplex adatvizualizációkkal, valós idejű frissítésekkel és többfelhasználós hozzáféréssel.",
+        "en": "SaaS dashboard with complex data visualisations, real-time updates and multi-user access control."
+      },
+      "tags": ["webapp", "fullstack"],
+      "color": "from-violet-600 to-pink-600",
+      "iconType": "chart",
+      "image": null,
+      "url": null,
+      "year": "2025"
+    },
+    {
+      "title": "ArcStudio",
+      "desc": {
+        "hu": "Építészeti iroda portfólióoldala letisztult animációkkal, 3D galéria nézettel és CMS integrációval.",
+        "en": "Architecture studio portfolio with clean animations, a 3D gallery view and CMS integration."
+      },
+      "tags": ["frontend"],
+      "color": "from-amber-500 to-orange-500",
+      "iconType": "building",
+      "image": null,
+      "url": null,
+      "year": "2025"
+    },
+    {
+      "title": "MedBook",
+      "desc": {
+        "hu": "Orvosi időpontfoglaló rendszer automatikus emlékeztetőkkel, fizetési integrációval és betegportállal.",
+        "en": "Medical appointment booking system with automated reminders, payment integration and a patient portal."
+      },
+      "tags": ["webapp", "fullstack"],
+      "color": "from-green-500 to-teal-500",
+      "iconType": "medical",
+      "image": null,
+      "url": null,
+      "year": "2026"
+    },
+    {
+      "title": "Forte Music",
+      "desc": {
+        "hu": "Zeneiskola weboldala online kurzusokkal, videólejátszóval és egyéni órarend-kezelővel.",
+        "en": "Music school website with online courses, a video player and a personalised schedule manager."
+      },
+      "tags": ["fullstack"],
+      "color": "from-pink-500 to-rose-500",
+      "iconType": "music",
+      "image": null,
+      "url": null,
+      "year": "2026"
+    },
+    {
+      "title": "GreenRoute",
+      "desc": {
+        "hu": "Fenntartható turisztikai weboldal interaktív térképpel, blog motorral és hírlevél integrációval.",
+        "en": "Sustainable tourism website with an interactive map, a blog engine and newsletter integration."
+      },
+      "tags": ["frontend", "fullstack"],
+      "color": "from-teal-500 to-brand-500",
+      "iconType": "leaf",
+      "image": null,
+      "url": null,
+      "year": "2026"
+    }
+  ]
+}
